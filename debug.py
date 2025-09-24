@@ -4,7 +4,7 @@ from order import Order
 import ipdb
 
 #create sample customers
-mitch = Customer("Mitch")
+mitch = Customer("Mitchelle")
 frost = Customer("Frost")
 #create sample coffees
 latte = Coffee("Iced latte")
