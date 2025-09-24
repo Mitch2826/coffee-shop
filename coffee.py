@@ -1,13 +1,17 @@
 class Coffee:
     def __init__(self, name):
         self.name = name
-    #get the coffee's name    
-    def get_name(self):
-        return self.name
+        
+    #get the coffee's name
+    @property    
+    def name(self):
+        return self._name
+    
     #set the coffee's name
-    def set_name(self, value):
+    @name.setter
+    def name(self, value):
         #check if name is already set
-        if hasattr(self, 'name'):
+        if hasattr(self, '_name'):
             raise AttributeError("Coffee name cannot be changed after creation!")
         #ensure name is a string
         if not isinstance(value, str):
@@ -16,8 +20,8 @@ class Coffee:
         if len(value) < 3:
             raise ValueError("Coffee name must be at least 3 characters long!")
         
-        self.name = value
-    name = property(get_name, set_name)
+        self._name = value
+    
     
     def orders(self):
         #get all orders for this coffee
@@ -39,8 +43,7 @@ class Coffee:
             customer = order.customer
             #only add if we haven't seen this customer before
             if customer not in unique_customers:
-                unique_customers.append(customer)
-                
+                unique_customers.append(customer)         
         return unique_customers
     
     #get total number of orders for this coffee

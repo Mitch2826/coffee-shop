@@ -2,10 +2,14 @@ class Customer:
     #new customer
     def __init__(self, name):
         self.name = name
+        
     #get customer's name  
-    def get_name(self):
-        return self.name
-    def set_name(self, value):
+    @property
+    def name(self):
+        return self._name
+    
+    @name.setter
+    def name(self, value):
         #name must be a string
         if not isinstance(value, str):
             raise TypeError("Name must be a string!")
@@ -13,8 +17,8 @@ class Customer:
         if not (1 <= len(value) <= 15):
             raise ValueError("Name must be between 1 and 15 characters!")
         
-        self.name = value
-    name = property(get_name, set_name)
+        self._name = value
+    
     
     def orders(self):
         #get all orders placed by this customer
